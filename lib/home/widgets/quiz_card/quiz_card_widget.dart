@@ -9,12 +9,14 @@ class QuizCardWidget extends StatelessWidget {
   final String title;
   final String completed;
   final double percent;
-
-  const QuizCardWidget({Key? key, required this.title, required this.completed, required this.percent}) : super(key: key);
+  final VoidCallback onTap;
+  const QuizCardWidget({Key? key, required this.title, required this.completed, required this.percent, required this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return GestureDetector(
+      onTap: onTap,
+      child:Container(
         padding: EdgeInsets.all(16),
         decoration: BoxDecoration(
           border: Border.fromBorderSide(
@@ -53,6 +55,6 @@ class QuizCardWidget extends StatelessWidget {
               Expanded(flex: 2, child: ProgressIndicatorWidget(value: percent))
             ],
           )
-        ]));
+        ])));
   }
 }
